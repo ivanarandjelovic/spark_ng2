@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
     title : string = '...';
 
     constructor( private messageService: MessageService ) {
-        //this.messageService = messageService;
     }
 
     ngOnInit(): void {
-        this.messageService.getMessage().then(message => {this.title = message; alert(message);});
+        alert("a?");
+        this.messageService.getMessage().then(message => {this.title = message; });
     }
 }
