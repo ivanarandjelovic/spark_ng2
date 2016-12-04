@@ -17,16 +17,18 @@ describe('MessageServiceService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should return mock message', inject([MessageService, ConnectionBackend], (service: MessageService, mockBackend: MockBackend) => {
+  it('should return mock message', done => {
+      
+      inject([MessageService, ConnectionBackend], (service: MessageService, mockBackend: MockBackend) => {
+
       mockBackend.connections.subscribe(conn => {
-          conn.mockRespond(new Response(new ResponseOptions({ body: JSON.stringify('{message:"ola"}') })));
+          conn.mockRespond(new Response(new ResponseOptions({ body: JSON.stringify({message:"ola"}) })));
         });
       service.getMessage().then( message => {
-        expect(message).toEqual("Mock message");
+        expect(message).toEqual("ola");
         done();
       });
-      //tick();
-      //expect(service.getMessage()).toEqual("Mock message");
-    }));
+    })();
+  });
 
 });
