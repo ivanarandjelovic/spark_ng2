@@ -9,12 +9,12 @@ export class MessageService {
 
     messageUrl = "http://localhost:4567/hello";
     
-//    constructor(private http: Http) { }
+    constructor(private http: Http) { }
   
   getMessage() : Promise<string> {
-      alert("uh?");
-      return Promise.resolve("ola");
-     /* return this.http.get(this.messageUrl)
+      //alert("uh?");
+      //return Promise.resolve("ola");
+      return this.http.get(this.messageUrl)
       .toPromise()
       .then(response => { 
 //          alert(response);
@@ -23,7 +23,7 @@ export class MessageService {
 //          alert(response.json().message as string);
           return response.json().message as string
       })
-      .catch(this.handleError);*/
+      .catch(this.handleError);
   }
   
   private handleError(error: any): Promise<any> {

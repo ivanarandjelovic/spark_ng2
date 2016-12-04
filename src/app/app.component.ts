@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        alert("a?");
+        //alert("a?");
         this.messageService.getMessage().then(message => {this.title = message; });
     }
 }

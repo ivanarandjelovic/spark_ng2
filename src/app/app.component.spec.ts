@@ -3,17 +3,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MessageService } from './message.service';
-import { Headers, Http } from '@angular/http';
-
-
+import { ConnectionBackend } from '@angular/http';
+import { BaseRequestOptions, RequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
 describe( 'AppComponent', () => {
-  
+
     var messageServiceStub = {
-            getMessage() : Promise<string> {
-                alert("stub called");
-                return Promise.resolve("ola");
-            }
+        getMessage(): Promise<string> {
+            //alert( "stub called" );
+            return Promise.resolve( "ola" );
+        }
     };
 
     beforeEach(() => {
@@ -21,7 +21,7 @@ describe( 'AppComponent', () => {
             declarations: [
                 AppComponent
             ],
-            providers: [{ provide: MessageService, useValue: messageServiceStub }]
+            providers: [{ provide: MessageService, useValue: messageServiceStub }, Http, { provide: RequestOptions, useClass: BaseRequestOptions }, { provide: ConnectionBackend, useClass: MockBackend }]
         });
     });
 
